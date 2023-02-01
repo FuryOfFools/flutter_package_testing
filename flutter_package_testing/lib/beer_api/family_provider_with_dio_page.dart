@@ -31,13 +31,20 @@ Data beerConvert(BeerConvertRef ref, Response arg) => Data(
     );
 
 @riverpod
-Future<Data> getBeerById(GetBeerByIdRef ref, String arg) async {
+Future<Data> getData(
+  GetDataRef ref, {
+  required String url,
+  required String arguments,
+  Map<String, dynamic>? queryParameters,
+}) async {
   Dio dio = ref.watch(dioProvider);
   final cancelToken = CancelToken();
   ref.onDispose(() => cancelToken.cancel());
 
   final response = await dio.get(
-    'https://api.punkapi.com/v2/beers/$arg',
+    // 'https://api.punkapi.com/v2/beers/$arguments',
+    '$url/$arguments',
+    queryParameters: queryParameters,
     cancelToken: cancelToken,
   );
   ref.keepAlive();
@@ -113,8 +120,12 @@ class BeerDataWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final id = ref.watch(beerIdProvider);
-    final bear = ref.watch(getBeerByIdProvider(id.toString()));
+    final bear = ref.watch(
+      getDataProvider(
+        url: 'https://api.punkapi.com/v2/beers/',
+        arguments: ref.watch(beerIdProvider).toString(),
+      ),
+    );
     return bear.when(
       loading: () => const CircularProgressIndicator(),
       error: (err, stack) => const Text('Error'),

@@ -109,63 +109,80 @@ class BeerConvertFamily extends Family<Data> {
   String? get name => r'beerConvertProvider';
 }
 
-String _$getBeerByIdHash() => r'5308bd8e649b18c96b8970768ee66383b66b2778';
+String _$getDataHash() => r'231f291988a5f99cbc1abe45cac4017880ca05c0';
 
-/// See also [getBeerById].
-class GetBeerByIdProvider extends AutoDisposeFutureProvider<Data> {
-  GetBeerByIdProvider(
-    this.arg,
-  ) : super(
-          (ref) => getBeerById(
+/// See also [getData].
+class GetDataProvider extends AutoDisposeFutureProvider<Data> {
+  GetDataProvider({
+    required this.url,
+    required this.arguments,
+    this.queryParameters,
+  }) : super(
+          (ref) => getData(
             ref,
-            arg,
+            url: url,
+            arguments: arguments,
+            queryParameters: queryParameters,
           ),
-          from: getBeerByIdProvider,
-          name: r'getBeerByIdProvider',
+          from: getDataProvider,
+          name: r'getDataProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$getBeerByIdHash,
+                  : _$getDataHash,
         );
 
-  final String arg;
+  final String url;
+  final String arguments;
+  final Map<String, dynamic>? queryParameters;
 
   @override
   bool operator ==(Object other) {
-    return other is GetBeerByIdProvider && other.arg == arg;
+    return other is GetDataProvider &&
+        other.url == url &&
+        other.arguments == arguments &&
+        other.queryParameters == queryParameters;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, arg.hashCode);
+    hash = _SystemHash.combine(hash, url.hashCode);
+    hash = _SystemHash.combine(hash, arguments.hashCode);
+    hash = _SystemHash.combine(hash, queryParameters.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-typedef GetBeerByIdRef = AutoDisposeFutureProviderRef<Data>;
+typedef GetDataRef = AutoDisposeFutureProviderRef<Data>;
 
-/// See also [getBeerById].
-final getBeerByIdProvider = GetBeerByIdFamily();
+/// See also [getData].
+final getDataProvider = GetDataFamily();
 
-class GetBeerByIdFamily extends Family<AsyncValue<Data>> {
-  GetBeerByIdFamily();
+class GetDataFamily extends Family<AsyncValue<Data>> {
+  GetDataFamily();
 
-  GetBeerByIdProvider call(
-    String arg,
-  ) {
-    return GetBeerByIdProvider(
-      arg,
+  GetDataProvider call({
+    required String url,
+    required String arguments,
+    Map<String, dynamic>? queryParameters,
+  }) {
+    return GetDataProvider(
+      url: url,
+      arguments: arguments,
+      queryParameters: queryParameters,
     );
   }
 
   @override
   AutoDisposeFutureProvider<Data> getProviderOverride(
-    covariant GetBeerByIdProvider provider,
+    covariant GetDataProvider provider,
   ) {
     return call(
-      provider.arg,
+      url: provider.url,
+      arguments: provider.arguments,
+      queryParameters: provider.queryParameters,
     );
   }
 
@@ -176,5 +193,5 @@ class GetBeerByIdFamily extends Family<AsyncValue<Data>> {
   List<ProviderOrFamily>? get dependencies => null;
 
   @override
-  String? get name => r'getBeerByIdProvider';
+  String? get name => r'getDataProvider';
 }

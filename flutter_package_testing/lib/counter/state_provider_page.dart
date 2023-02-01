@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_package_testing/beer_api/family_provider_with_dio_page.dart';
-import 'package:flutter_package_testing/notifier_provider_page.dart';
+import 'package:flutter_package_testing/dice_roller/notifier_provider_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final counterProvider = StateProvider<int>((ref) => 0);
@@ -34,7 +34,7 @@ class RiverpodStateProviderDemoPage extends ConsumerWidget {
             const Padding(padding: EdgeInsets.all(8.0)),
             const ButtonWidget(
               page: NotifierProviderPage(),
-              title: 'Notifier Demo',
+              title: 'Models Demo',
             ),
           ],
         ),
