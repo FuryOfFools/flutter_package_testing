@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String _$DiceBoardHash() => r'b9770125c57d15d11ba7a280de7fcfc80bb11926';
+String _$DiceBoardHash() => r'e48f29bff1eabd9a2ea7f2a6d1b7b532e84adab6';
 
 /// See also [DiceBoard].
 final diceBoardProvider = AutoDisposeNotifierProvider<DiceBoard, List<Dice>>(

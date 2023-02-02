@@ -33,17 +33,6 @@ class DiceBoard extends _$DiceBoard {
     return [];
   }
 
-  void roll(DiceType type) {
-    var rng = Random();
-    state = [
-      ...state,
-      Dice(
-        type: type,
-        value: rng.nextInt(maxValueByType[type]!) + 1,
-      ),
-    ];
-  }
-
   void reroll(int index) {
     var rng = Random();
     state = [
@@ -54,6 +43,17 @@ class DiceBoard extends _$DiceBoard {
           )
         else
           state[i],
+    ];
+  }
+
+  void roll(DiceType type) {
+    var rng = Random();
+    state = [
+      ...state,
+      Dice(
+        type: type,
+        value: rng.nextInt(maxValueByType[type]!) + 1,
+      ),
     ];
   }
 

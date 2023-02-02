@@ -29,40 +29,30 @@ class _SystemHash {
   }
 }
 
-String _$dioHash() => r'6ba3fae61ca93215efac12cdedb7e4445df1dfc6';
+String _$beersConvertHash() => r'f5b4ba0f8bfc6261c34f95ab9f846ce832d1fb78';
 
-/// See also [dio].
-final dioProvider = AutoDisposeProvider<Dio>(
-  dio,
-  name: r'dioProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$dioHash,
-);
-typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$beerConvertHash() => r'b685a9f606a427dd3424f15df6e2a88cca4eb3af';
-
-/// See also [beerConvert].
-class BeerConvertProvider extends AutoDisposeProvider<Data> {
-  BeerConvertProvider(
+/// See also [beersConvert].
+class BeersConvertProvider extends AutoDisposeProvider<List<Beer>> {
+  BeersConvertProvider(
     this.arg,
   ) : super(
-          (ref) => beerConvert(
+          (ref) => beersConvert(
             ref,
             arg,
           ),
-          from: beerConvertProvider,
-          name: r'beerConvertProvider',
+          from: beersConvertProvider,
+          name: r'beersConvertProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$beerConvertHash,
+                  : _$beersConvertHash,
         );
 
   final Response<dynamic> arg;
 
   @override
   bool operator ==(Object other) {
-    return other is BeerConvertProvider && other.arg == arg;
+    return other is BeersConvertProvider && other.arg == arg;
   }
 
   @override
@@ -74,25 +64,25 @@ class BeerConvertProvider extends AutoDisposeProvider<Data> {
   }
 }
 
-typedef BeerConvertRef = AutoDisposeProviderRef<Data>;
+typedef BeersConvertRef = AutoDisposeProviderRef<List<Beer>>;
 
-/// See also [beerConvert].
-final beerConvertProvider = BeerConvertFamily();
+/// See also [beersConvert].
+final beersConvertProvider = BeersConvertFamily();
 
-class BeerConvertFamily extends Family<Data> {
-  BeerConvertFamily();
+class BeersConvertFamily extends Family<List<Beer>> {
+  BeersConvertFamily();
 
-  BeerConvertProvider call(
+  BeersConvertProvider call(
     Response<dynamic> arg,
   ) {
-    return BeerConvertProvider(
+    return BeersConvertProvider(
       arg,
     );
   }
 
   @override
-  AutoDisposeProvider<Data> getProviderOverride(
-    covariant BeerConvertProvider provider,
+  AutoDisposeProvider<List<Beer>> getProviderOverride(
+    covariant BeersConvertProvider provider,
   ) {
     return call(
       provider.arg,
@@ -106,92 +96,16 @@ class BeerConvertFamily extends Family<Data> {
   List<ProviderOrFamily>? get dependencies => null;
 
   @override
-  String? get name => r'beerConvertProvider';
+  String? get name => r'beersConvertProvider';
 }
 
-String _$getDataHash() => r'231f291988a5f99cbc1abe45cac4017880ca05c0';
+String _$getBeersHash() => r'0c34af53cd0fa3c57ff6e23a409a57b629e34d1d';
 
-/// See also [getData].
-class GetDataProvider extends AutoDisposeFutureProvider<Data> {
-  GetDataProvider({
-    required this.url,
-    required this.arguments,
-    this.queryParameters,
-  }) : super(
-          (ref) => getData(
-            ref,
-            url: url,
-            arguments: arguments,
-            queryParameters: queryParameters,
-          ),
-          from: getDataProvider,
-          name: r'getDataProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getDataHash,
-        );
-
-  final String url;
-  final String arguments;
-  final Map<String, dynamic>? queryParameters;
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetDataProvider &&
-        other.url == url &&
-        other.arguments == arguments &&
-        other.queryParameters == queryParameters;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, url.hashCode);
-    hash = _SystemHash.combine(hash, arguments.hashCode);
-    hash = _SystemHash.combine(hash, queryParameters.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-typedef GetDataRef = AutoDisposeFutureProviderRef<Data>;
-
-/// See also [getData].
-final getDataProvider = GetDataFamily();
-
-class GetDataFamily extends Family<AsyncValue<Data>> {
-  GetDataFamily();
-
-  GetDataProvider call({
-    required String url,
-    required String arguments,
-    Map<String, dynamic>? queryParameters,
-  }) {
-    return GetDataProvider(
-      url: url,
-      arguments: arguments,
-      queryParameters: queryParameters,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<Data> getProviderOverride(
-    covariant GetDataProvider provider,
-  ) {
-    return call(
-      url: provider.url,
-      arguments: provider.arguments,
-      queryParameters: provider.queryParameters,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'getDataProvider';
-}
+/// See also [getBeers].
+final getBeersProvider = AutoDisposeFutureProvider<List<Beer>>(
+  getBeers,
+  name: r'getBeersProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getBeersHash,
+);
+typedef GetBeersRef = AutoDisposeFutureProviderRef<List<Beer>>;
