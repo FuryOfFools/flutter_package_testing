@@ -29,6 +29,22 @@ class _SystemHash {
   }
 }
 
+String _$CartHash() => r'3aba8db2f67e6e7362a296b7889637d2836aae3f';
+
+/// See also [Cart].
+final cartProvider = AutoDisposeNotifierProvider<Cart, List<Beer>>(
+  Cart.new,
+  name: r'cartProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$CartHash,
+);
+typedef CartRef = AutoDisposeNotifierProviderRef<List<Beer>>;
+
+abstract class _$Cart extends AutoDisposeNotifier<List<Beer>> {
+  @override
+  List<Beer> build();
+}
+
 String _$beersConvertHash() => r'f5b4ba0f8bfc6261c34f95ab9f846ce832d1fb78';
 
 /// See also [beersConvert].
@@ -99,7 +115,7 @@ class BeersConvertFamily extends Family<List<Beer>> {
   String? get name => r'beersConvertProvider';
 }
 
-String _$getBeersHash() => r'0c34af53cd0fa3c57ff6e23a409a57b629e34d1d';
+String _$getBeersHash() => r'd563e9a9c039fec07ace61228fd602eb89bcc9fc';
 
 /// See also [getBeers].
 final getBeersProvider = AutoDisposeFutureProvider<List<Beer>>(
@@ -109,3 +125,83 @@ final getBeersProvider = AutoDisposeFutureProvider<List<Beer>>(
       const bool.fromEnvironment('dart.vm.product') ? null : _$getBeersHash,
 );
 typedef GetBeersRef = AutoDisposeFutureProviderRef<List<Beer>>;
+String _$isInCartHash() => r'24121c531d94f42e69dbcf068b92a16956f20010';
+
+/// See also [isInCart].
+class IsInCartProvider extends AutoDisposeProvider<bool> {
+  IsInCartProvider(
+    this.beer,
+  ) : super(
+          (ref) => isInCart(
+            ref,
+            beer,
+          ),
+          from: isInCartProvider,
+          name: r'isInCartProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$isInCartHash,
+        );
+
+  final Beer beer;
+
+  @override
+  bool operator ==(Object other) {
+    return other is IsInCartProvider && other.beer == beer;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, beer.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef IsInCartRef = AutoDisposeProviderRef<bool>;
+
+/// See also [isInCart].
+final isInCartProvider = IsInCartFamily();
+
+class IsInCartFamily extends Family<bool> {
+  IsInCartFamily();
+
+  IsInCartProvider call(
+    Beer beer,
+  ) {
+    return IsInCartProvider(
+      beer,
+    );
+  }
+
+  @override
+  AutoDisposeProvider<bool> getProviderOverride(
+    covariant IsInCartProvider provider,
+  ) {
+    return call(
+      provider.beer,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'isInCartProvider';
+}
+
+String _$cartCountHash() => r'75ffd08933d1a191b9ef58cae088ad1210ff115e';
+
+/// See also [cartCount].
+final cartCountProvider = AutoDisposeProvider<int>(
+  cartCount,
+  name: r'cartCountProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$cartCountHash,
+);
+typedef CartCountRef = AutoDisposeProviderRef<int>;
