@@ -39,7 +39,7 @@ class DiceBoard extends _$DiceBoard {
       ...state,
       Dice(
         type: type,
-        value: rng.nextInt(maxValueByType[type]! - 1) + 1,
+        value: rng.nextInt(maxValueByType[type]!) + 1,
       ),
     ];
   }
@@ -50,10 +50,7 @@ class DiceBoard extends _$DiceBoard {
       for (int i = 0; i < state.length; i++)
         if (i == index)
           state[i].copyWith(
-            value: rng.nextInt(
-                  maxValueByType[state[i].type]! - 1,
-                ) +
-                1,
+            value: rng.nextInt(maxValueByType[state[i].type]!) + 1,
           )
         else
           state[i],
