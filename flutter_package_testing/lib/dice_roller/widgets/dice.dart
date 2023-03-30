@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_package_testing/dice_roller/provider/dice_model.dart';
+import 'package:flutter_package_testing/dice_roller/models/dice/dice.dart';
+import 'package:flutter_package_testing/dice_roller/provider/other_providers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DiceWidget extends StatelessWidget {
-  final DiceType type;
-  final int value;
-  const DiceWidget({super.key, required this.type, required this.value});
+class DiceWidget extends ConsumerWidget {
+  final Dice dice;
+  const DiceWidget({
+    super.key,
+    required this.dice,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final String asset = ref.watch(diceAssetProvider(dice.maxValue));
     return Container(
       width: 60,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(
-            'assets/${type.name}.png',
-          ),
+          image: AssetImage(asset),
           fit: BoxFit.scaleDown,
         ),
       ),
       child: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Text(
-          value.toString(),
-          style: const TextStyle(fontSize: 18),
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Text(
+            dice.value.toString(),
+            style: const TextStyle(fontSize: 18),
+          ),
         ),
-      )),
+      ),
     );
   }
 }

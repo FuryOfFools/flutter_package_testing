@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_package_testing/dice_roller/provider/dice_model.dart';
+import 'package:flutter_package_testing/dice_roller/provider/dice_board/dice_board.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DeleteAllDices extends ConsumerWidget {

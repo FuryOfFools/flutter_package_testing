@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'dice_model.dart';
+part of 'dice.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Dice {
-  DiceType get type => throw _privateConstructorUsedError;
+  int get maxValue => throw _privateConstructorUsedError;
   int get value => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -28,7 +28,7 @@ abstract class $DiceCopyWith<$Res> {
   factory $DiceCopyWith(Dice value, $Res Function(Dice) then) =
       _$DiceCopyWithImpl<$Res, Dice>;
   @useResult
-  $Res call({DiceType type, int value});
+  $Res call({int maxValue, int value});
 }
 
 /// @nodoc
@@ -44,14 +44,14 @@ class _$DiceCopyWithImpl<$Res, $Val extends Dice>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? maxValue = null,
     Object? value = null,
   }) {
     return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as DiceType,
+      maxValue: null == maxValue
+          ? _value.maxValue
+          : maxValue // ignore: cast_nullable_to_non_nullable
+              as int,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -66,7 +66,7 @@ abstract class _$$_DiceCopyWith<$Res> implements $DiceCopyWith<$Res> {
       __$$_DiceCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DiceType type, int value});
+  $Res call({int maxValue, int value});
 }
 
 /// @nodoc
@@ -78,14 +78,14 @@ class __$$_DiceCopyWithImpl<$Res> extends _$DiceCopyWithImpl<$Res, _$_Dice>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? maxValue = null,
     Object? value = null,
   }) {
     return _then(_$_Dice(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as DiceType,
+      maxValue: null == maxValue
+          ? _value.maxValue
+          : maxValue // ignore: cast_nullable_to_non_nullable
+              as int,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -97,16 +97,16 @@ class __$$_DiceCopyWithImpl<$Res> extends _$DiceCopyWithImpl<$Res, _$_Dice>
 /// @nodoc
 
 class _$_Dice implements _Dice {
-  _$_Dice({required this.type, required this.value});
+  _$_Dice({required this.maxValue, required this.value});
 
   @override
-  final DiceType type;
+  final int maxValue;
   @override
   final int value;
 
   @override
   String toString() {
-    return 'Dice(type: $type, value: $value)';
+    return 'Dice(maxValue: $maxValue, value: $value)';
   }
 
   @override
@@ -114,12 +114,13 @@ class _$_Dice implements _Dice {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Dice &&
-            (identical(other.type, type) || other.type == type) &&
+            (identical(other.maxValue, maxValue) ||
+                other.maxValue == maxValue) &&
             (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type, value);
+  int get hashCode => Object.hash(runtimeType, maxValue, value);
 
   @JsonKey(ignore: true)
   @override
@@ -129,11 +130,11 @@ class _$_Dice implements _Dice {
 }
 
 abstract class _Dice implements Dice {
-  factory _Dice({required final DiceType type, required final int value}) =
+  factory _Dice({required final int maxValue, required final int value}) =
       _$_Dice;
 
   @override
-  DiceType get type;
+  int get maxValue;
   @override
   int get value;
   @override

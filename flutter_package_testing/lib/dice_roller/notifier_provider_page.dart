@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_package_testing/dice_roller/provider/dice_model.dart';
+import 'package:flutter_package_testing/dice_roller/models/dice/dice.dart';
+import 'package:flutter_package_testing/dice_roller/provider/dice_board/dice_board.dart';
+import 'package:flutter_package_testing/dice_roller/provider/dice_display/dice_display.dart';
+import 'package:flutter_package_testing/dice_roller/provider/other_providers.dart';
 import 'package:flutter_package_testing/dice_roller/widgets/delete_all.dart';
 import 'package:flutter_package_testing/dice_roller/widgets/dice.dart';
 import 'package:flutter_package_testing/dice_roller/widgets/dice_display.dart';
@@ -69,7 +72,7 @@ class NotifierProviderPage extends StatelessWidget {
                         );
                       },
                     ),
-                    const DiceDisplay(),
+                    const DiceDisplayWidget(),
                   ],
                 ),
               ),
@@ -80,7 +83,7 @@ class NotifierProviderPage extends StatelessWidget {
                   color: Colors.green[100],
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const DiceBoard(),
+                child: const DiceBoardWidget(),
               ),
             ],
           ),
@@ -90,12 +93,12 @@ class NotifierProviderPage extends StatelessWidget {
   }
 }
 
-class DiceBoard extends ConsumerWidget {
-  const DiceBoard({super.key});
+class DiceBoardWidget extends ConsumerWidget {
+  const DiceBoardWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Dice> dices = ref.watch(diceBoardProvider);
+    List<Dice> dices = ref.watch(diceDisplayProvider);
     return dices.isNotEmpty
         ? Column(
             children: <Widget>[
@@ -110,7 +113,8 @@ class DiceBoard extends ConsumerWidget {
                       onTap: () =>
                           ref.read(diceBoardProvider.notifier).reroll(i),
                       child: DiceWidget(
-                          type: dices[i].type, value: dices[i].value),
+                        dice: dices[i],
+                      ),
                     )
                 ],
               ),

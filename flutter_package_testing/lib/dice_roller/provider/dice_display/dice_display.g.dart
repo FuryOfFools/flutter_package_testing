@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dice_model.dart';
+part of 'dice_display.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,29 +29,19 @@ class _SystemHash {
   }
 }
 
-String _$DiceBoardHash() => r'e48f29bff1eabd9a2ea7f2a6d1b7b532e84adab6';
+String _$DiceDisplayHash() => r'08473df98e6ea548641d73ff8a73e8079c1192aa';
 
-/// See also [DiceBoard].
-final diceBoardProvider = AutoDisposeNotifierProvider<DiceBoard, List<Dice>>(
-  DiceBoard.new,
-  name: r'diceBoardProvider',
+/// See also [DiceDisplay].
+final diceDisplayProvider =
+    AutoDisposeNotifierProvider<DiceDisplay, List<Dice>>(
+  DiceDisplay.new,
+  name: r'diceDisplayProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$DiceBoardHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$DiceDisplayHash,
 );
-typedef DiceBoardRef = AutoDisposeNotifierProviderRef<List<Dice>>;
+typedef DiceDisplayRef = AutoDisposeNotifierProviderRef<List<Dice>>;
 
-abstract class _$DiceBoard extends AutoDisposeNotifier<List<Dice>> {
+abstract class _$DiceDisplay extends AutoDisposeNotifier<List<Dice>> {
   @override
   List<Dice> build();
 }
-
-String _$getDiceSumHash() => r'b1dd57cfa9568abab86a0f2b3c063a998144f4dc';
-
-/// See also [getDiceSum].
-final getDiceSumProvider = AutoDisposeProvider<int>(
-  getDiceSum,
-  name: r'getDiceSumProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$getDiceSumHash,
-);
-typedef GetDiceSumRef = AutoDisposeProviderRef<int>;
