@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_package_testing/beer_api/family_provider_with_dio_page.dart';
+import 'package:flutter_package_testing/counter/stream_provider.dart';
 import 'package:flutter_package_testing/dice_roller/notifier_provider_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,6 +28,22 @@ class RiverpodStateProviderDemoPage extends ConsumerWidget {
                 return Text(
                   '${ref.watch(counterProvider)}',
                   style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
+            ),
+            const Text(
+              'Stream Provider per 2 second:',
+            ),
+            Consumer(
+              builder: (context, ref, child) {
+                var stream = ref.watch(streamCounter);
+                return stream.when(
+                  data: (data) => Text(
+                    data.toString(),
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  error: (error, stackTrace) => SizedBox(),
+                  loading: () => SizedBox(),
                 );
               },
             ),
